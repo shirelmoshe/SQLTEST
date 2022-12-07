@@ -1,0 +1,56 @@
+--q1
+select * from Products where UnitPrice  betWeen 40 and 50 
+--q2
+select * from Categories where CategoryName='Condiments'
+--q3
+select * from Products inner join Categories on Products.CategoryID=Categories.CategoryID where Categories.Description like '%s%' or Categories.Description LIKE '%S%'
+
+
+--select  * from Customers INNER JOIN Suppliers ON  Suppliers.CompanyName=Customers.CompanyName
+
+--q4
+
+select distinct Products.ProductName  from Products inner join Suppliers on Products.SupplierID=Suppliers.SupplierID
+inner join Customers on Customers.City=Suppliers.City where Customers.CustomerID='ALFKI'
+
+--q5
+
+select  * from Orders where ShipCity in ('London','Brazil')
+select  * from Orders where ShipCity='London' or ShipCity='Brazil'
+--q6
+select Customers.CompanyName, 
+case
+when Shippers.CompanyName = 'Federal Shipping' then  Shippers.CompanyName   
+end
+as CompanyName from Customers,Shippers
+
+
+--q7
+create procedure pro
+@getpro int
+as
+begin
+SELECT ProductName FROM Products
+SELECT UnitPrice FROM Products
+end
+
+exec pro  @getpro=5
+
+
+
+--q8
+select  CustomerID,EmployeeID,ShipVia,Freight,ShipName,ShipAddress,ShipCity,ShipRegion,ShipPostalCode ,ShipCountry from Orders where( CustomerID like 'B%') and ShipCountry in('France','Canada','Sweden') and EmployeeID =2 or EmployeeID =5  order by ShipVia
+
+
+--q9
+select OD.*,O.OrderDate,O.EmployeeID,O.CustomerID from [Order Details] OD inner join Orders O
+on O.OrderID = OD.OrderID OR O.OrderID != OD.OrderID
+where OD.OrderID = 10248 and O.CustomerID like 'VINET'
+order by UnitPrice,O.EmployeeID
+--q10
+select CustomerID,Region,Country from  Customers where Country in('France','Canada')
+
+
+
+
+
