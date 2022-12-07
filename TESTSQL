@@ -15,8 +15,8 @@ inner join Customers on Customers.City=Suppliers.City where Customers.CustomerID
 
 --q5
 
-select  * from Orders where ShipCity in ('London','Brazil')
-select  * from Orders where ShipCity='London' or ShipCity='Brazil'
+
+select  * from Orders where ShipCity='London' or ShipCountry ='Brazil'
 --q6
 select Customers.CompanyName, 
 case
